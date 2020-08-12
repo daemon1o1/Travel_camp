@@ -7,6 +7,7 @@ var express     =require("express"),
     Campground  =require("./models/campground"),
     passport=require("passport"),
     LocalStrategy =require("passport-local"),
+    methodOverride=require("method-override"),
     User=require("./models/user"),
     Comment     =require("./models/comment"),//yha pehle campground tha
     seedDB      =require("./seeds");
@@ -21,6 +22,8 @@ app.use(bodyparser.urlencoded({extended:true}));
 app.use(express.static('public'));
 app.set("view engine","ejs");
 app.use(express.static(__dirname+"/public"));//dirnam=current directory..static files 
+
+app.use(methodOverride("_method"));
  mongoose.connect("mongodb://localhost:27017/yelp_camp",{useNewUrlParser: true,useUnifiedTopology: true},function(err){});
      
 //PASSPORT CONFIGURATION
